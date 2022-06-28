@@ -53,7 +53,7 @@ export default function Home() {
 
       <div style={{width: "100%", height: "100vh"}}>
         <GoogleMapReact
-          bootstrapURLKeys={{key: "AIzaSyAJrwFbK5IsGCBpQor90U540OSJ15CHXos" }}
+          bootstrapURLKeys={{key: "" }}
           defaultCenter={defaultProps.center}
           defaultZoom={defaultProps.zoom}
         >

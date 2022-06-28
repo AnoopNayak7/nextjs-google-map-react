@@ -14,3 +14,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.clusterMark{
+  color: #fff;
+  background: #f35c04;
+  width: fit-content;
+  white-space: nowrap;
+  border-radius: 3px;
+  padding: 8px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
