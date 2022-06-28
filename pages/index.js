@@ -1,8 +1,48 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import GoogleMapReact from "google-map-react";
+
+const AnyReactComponent = ({ text }) => <div><img src="https://img.icons8.com/color/48/000000/marker--v1.png"/><span style={{background: "white"}}>{text}</span></div>;
+
+const data = [
+  {
+    id: 1,
+    title: "Property1",
+    lat: "59.955413",
+    lng: "30.52"
+  },
+
+  {
+    id: 2,
+    title: "Property2",
+    lat: "59.855413",
+    lng: "30.60"
+  },
+
+  {
+    id: 1,
+    title: "Property3",
+    lat: "59.655413",
+    lng: "30.23"
+  },
+
+  {
+    id: 1,
+    title: "Property4",
+    lat: "59.955413",
+    lng: "30.33"
+  }
+]
 
 export default function Home() {
+  const defaultProps = {
+    center: {
+      lat: 59.95,
+      lng: 30.33,
+    },
+    zoom: 11,
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -11,59 +51,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div style={{width: "100%", height: "100vh"}}>
+        <GoogleMapReact
+          bootstrapURLKeys={{key: "AIzaSyAJrwFbK5IsGCBpQor90U540OSJ15CHXos" }}
+          defaultCenter={defaultProps.center}
+          defaultZoom={defaultProps.zoom}
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+          {
+            data.map((item, id) => {
+              return(
+                <AnyReactComponent lat={item.lat} lng={item.lng} text={item.title} />
+              )
+            })
+          }
+          {/* <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" /> */}
+        </GoogleMapReact>
+      </div>
     </div>
-  )
+  );
 }
